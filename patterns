@@ -1,0 +1,98 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package composite;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author Ali
+ */
+public class Dashborad {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Drivetrain drivetrain = new Drivetrain();
+  
+       Engine engine = new Engine();
+      
+        Breaking breaking = new Breaking();
+
+
+        DashboardSys dashboard = new DashboardSys();
+       
+        
+        
+        dashboard.addSubSystems(drivetrain);
+        dashboard.addSubSystems(engine);
+        dashboard.addSubSystems(breaking);
+        
+
+        dashboard.addSubSystems(dashboard);
+        
+        composite.interact();
+                
+
+
+
+        
+    }
+    
+}
+
+    interface DashboardSystem{
+      
+    void interact();
+    }
+
+   class Drivetrain implements DashboardSystem{
+
+    @Override
+    public void interact() {
+        System.out.print("Drivetrain ");
+    }
+   }
+    class Engine implements DashboardSystem{
+
+    @Override
+    public void interact() {
+        System.out.print("Engine ");
+    }
+   
+   }
+
+   class Breaking implements DashboardSystem{
+
+    @Override
+    public void interact() {
+        System.out.print("Breaking ");
+    }
+   
+   }
+
+   class DashboardSys implements DashboardSystem{
+     private  List<DashboardSystem> SubSystem = new ArrayList<DashboardSystem>();
+     
+     public void addSubSystems(DashboardSystem SubSystem){
+     SubSystems.add(SubSystem);
+     }
+     
+      public void deleteSubSystems(DashboardSystem SubSystem){
+     SubSystems.remove(SubSystem);
+     }
+      
+    @Override
+    public void interact() {
+        
+        for(Dashboard SubSystem: SubSystems){
+             SubSystem.interact();
+        }
+    }
+   
+   }
